@@ -25,7 +25,7 @@
 <body>
 
   <!-- Display the map and title with HTML division tags  -->
-  <div id="map-title">My Map Title</div>
+  <div id="map-title">Kearney's Pioneer Neighborhood</div>
   <div id="map"></div>
 
   <!-- Create the map content with JavaScript (.js) -->
@@ -57,20 +57,20 @@
   // controlLayers.addBaseLayer(terrain, 'Stamen Terrain basemap');
 
   /* Display a blue point marker with pop-up text */
-  L.marker([40.696636, -99.091949]).addTo(map) // EDIT latitude, longitude to re-position marker
-  .bindPopup("My pop-up text here"); // EDIT pop-up text message
+  //L.marker([40.696636, -99.091949]).addTo(map) // EDIT latitude, longitude to re-position marker
+  //.bindPopup("My pop-up text here"); // EDIT pop-up text message
 
   /* Upload Latitude/Longitude markers from data.csv file, show Title in pop-up, and override initial center and zoom to fit all in map */
-  // var customLayer = L.geoJson(null, {
-  //  onEachFeature: function(feature, layer) {
-  //    layer.bindPopup(feature.properties.Title);
-  //  }
-  // });
-  // var runLayer = omnivore.csv('data.csv', null, customLayer)
-  // .on('ready', function() {
-  //  map.fitBounds(runLayer.getBounds());
-  // }).addTo(map);
-  // controlLayers.addOverlay(customLayer, 'Markers from data.csv');
+  var customLayer = L.geoJson(null, {
+    onEachFeature: function(feature, layer) {
+      layer.bindPopup(feature.properties.Title);
+    }
+   });
+   var runLayer = omnivore.csv('data.csv', null, customLayer)
+   .on('ready', function() {
+    map.fitBounds(runLayer.getBounds());
+   }).addTo(map);
+   controlLayers.addOverlay(customLayer, 'Markers from data.csv');
 
   </script>
 </body>
